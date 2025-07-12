@@ -1,5 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import { NextDrupal } from "next-drupal";
+
+const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string);
+const campings = drupal.getResourceCollection("node--camping");
+// console.log(campings);
+const camping = drupal.getResource("node--camping", "851c5e44-2ab1-4d0c-959b-76f5ddf90b47");
+console.log(camping);
 
 const CampingCard = () => {
   return (
