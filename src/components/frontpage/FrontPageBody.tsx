@@ -1,4 +1,10 @@
+import FrontPageImage from "./FrontPageImage";
+
 const FrontPageBody = () => {
-  return <div>FrontPageBody</div>;
+  return (
+    <>
+      <FrontPageImage />
+    </>
+  );
 };
 export default FrontPageBody;

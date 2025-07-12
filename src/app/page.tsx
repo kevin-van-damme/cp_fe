@@ -1,4 +1,10 @@
+import FrontPageBody from "@/components/frontpage/FrontPageBody";
+
 const page = () => {
-  return <div>Next is reset</div>;
+  return (
+    <>
+      <FrontPageBody />
+    </>
+  );
 };
 export default page;
