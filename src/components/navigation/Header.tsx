@@ -9,11 +9,6 @@ const Header = () => {
       <nav className="flex items-center">
         <ul className="flex gap-3">
           <li>
-            <Link href="/about" className="hover:text-slate-700 transition-all">
-              About
-            </Link>
-          </li>
-          <li>
             <Link href="/campings" className="hover:text-slate-700 transition-all">
               Campings
             </Link>
