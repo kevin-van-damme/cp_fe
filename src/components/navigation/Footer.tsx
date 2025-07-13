@@ -16,21 +16,6 @@ const Footer = () => {
                 Home
               </Link>
             </li>
-            <li>
-              <Link href="/all-campings" className="hover:underline">
-                All Campings
-              </Link>
-            </li>
-            <li>
-              <Link href="/aboutpage" className="hover:underline">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link href="/contactpage" className="hover:underline">
-                Contact
-              </Link>
-            </li>
           </ul>
         </div>
         <div>
@@ -47,14 +32,14 @@ const Footer = () => {
               <span>📧</span>
             </Link>
           </div>
-          <div className="flex space-x-4">
+          {/* <div className="flex space-x-4">
             <Link href="/cookiepage" className="hover:underline">
               <span>Cookies</span>
             </Link>
             <Link href="privacypage" className="hover:underline">
               <span>Privacy Policy</span>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="border-t border-gray-600 mt-10 pt-6 text-center text-sm text-gray-400">

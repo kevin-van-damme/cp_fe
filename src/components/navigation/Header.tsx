@@ -4,7 +4,9 @@ const Header = () => {
   return (
     <div className="mx-auto flex justify-between max-w-6xl w-full py-5 text-xl font-semibold text-slate-900">
       <Link href="/">
-        <Image src="/logo_buitenbijons.svg" alt="buitenbijons logo" width={50} height={50} />
+        <div className="relative">
+          <Image src="/logo_buitenbijons.svg" alt="buitenbijons logo" className="w-[50px] h-[50px]" width={50} height={50} />
+        </div>
       </Link>
       <nav className="flex items-center">
         <ul className="flex gap-3">
