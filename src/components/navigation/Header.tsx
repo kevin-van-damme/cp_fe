@@ -15,16 +15,6 @@ const Header = () => {
               Campings
             </Link>
           </li>
-          <li>
-            <Link href="/login" className="hover:text-slate-700 transition-all">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link href="/register" className="hover:text-slate-700 transition-all">
-              Sign Up
-            </Link>
-          </li>
         </ul>
       </nav>
     </div>

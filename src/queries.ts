@@ -1,23 +1,29 @@
-import { NextDrupal } from "next-drupal";
 import type { Camping } from "./typesCamping";
+import { NextDrupal } from "next-drupal";
+import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 
-export const getAllCampings = async (): Promise<Camping> => {
+export const getAllCampings = async () => {
+  const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string);
   try {
-    const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string);
-    const campings = await drupal.getResourceCollection<Camping>("node--camping");
+    const params = new DrupalJsonApiParams()
+      .addFields("node--camping", [
+        "id",
+        "title",
+        "field_camping_image",
+        "field_camping_location",
+        "field_camping_owner",
+        "field_camping_tags",
+        "field_camping_country",
+        "field_camping_description",
+        "field_camping_price",
+      ])
+      .addInclude(["field_camping_image", "field_camping_location", "field_camping_owner", "field_camping_tags", "field_camping_country"]);
+    const campings = await drupal.getResourceCollection<Camping[]>("node--camping", {
+      params: params.getQueryObject(),
+    });
     return campings;
   } catch (error) {
     console.error("Error fetching campings:", error);
-    throw error;
-  }
-};
-export const getCampingById = async (id: string) => {
-  try {
-    const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string);
-    const camping = await drupal.getResource("node--camping", id);
-    return camping;
-  } catch (error) {
-    console.error("Error fetching camping:", error);
     throw error;
   }
 };
