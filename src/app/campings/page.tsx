@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Camping } from "@/typesCamping";
-import { getAllCampings } from "@/queries";
 
 const page = async () => {
   const campingsData: Camping[] = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/campings`, {
