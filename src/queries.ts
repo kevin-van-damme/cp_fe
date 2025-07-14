@@ -17,7 +17,14 @@ export const getAllCampings = async () => {
         "field_camping_description",
         "field_camping_price",
       ])
-      .addInclude(["field_camping_image", "field_camping_location", "field_camping_owner", "field_camping_tags", "field_camping_country"]);
+      .addInclude([
+        "field_camping_image",
+        "field_camping_location",
+        "field_camping_owner",
+        "field_camping_tags",
+        "field_camping_price",
+        "field_camping_country",
+      ]);
     const campings = await drupal.getResourceCollection<Camping[]>("node--camping", {
       params: params.getQueryObject(),
     });
