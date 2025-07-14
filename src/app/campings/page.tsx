@@ -4,34 +4,30 @@ import type { Camping } from "@/typesCamping";
 import { getAllCampings } from "@/queries";
 
 const page = async () => {
-  // const campingsData: Camping[] = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/campings`, {
-  //   next: { revalidate: 60 },
-  // }).then((res) => res.json());
-  const campingsData = await getAllCampings();
+  const campingsData: Camping[] = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/campings`, {
+    next: { revalidate: 60 },
+  }).then((res) => res.json());
 
   return (
     <div className="max-w-7xl mx-auto">
       <div>
-        {/* <pre>{JSON.stringify(campingsData, null, 2)}</pre> */}
         <ul className="grid [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))] gap-10 px-2 justify-center" id="campings">
           {campingsData.length > 0 ? (
             campingsData.map((camping: Camping) => (
-              <li key={camping.data[1].id}>
+              <li key={camping.id}>
                 <Link href="">
                   <div className="flex flex-col w-full h-full bg-[#1a2b3c] rounded-2xl shadow-xl overflow-hidden text-white">
                     <div className="relative w-full aspect-[4/3]">
                       <Image
-                        src="/home_page_image.jpg"
+                        src={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${camping.field_camping_image.uri.url}`}
                         alt=""
                         fill
                         sizes="100%"
-                        width={0}
-                        height={0}
                         className="w-auto h-auto object-cover transition-transform duration-500 hover:scale-110"
                       />
                     </div>
                     <div className="flex-1 flex items-center justify-center p-4">
-                      <p className="font-bold text-xl text-center">{camping.data[1].attributes.title}</p>
+                      <p className="font-bold text-xl text-center">{camping.title}</p>
                     </div>
                   </div>
                 </Link>
