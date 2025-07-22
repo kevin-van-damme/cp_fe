@@ -1,25 +1,28 @@
 export interface Camping {
-  type: CampingType;
+  type: string;
   id: string;
   title: string;
   field_camping_description: string;
+  field_camping_map: FieldCampingMap;
   field_camping_price: string;
+  field_checkin_checkout: string;
   links: FieldCampingCountryLinks;
   field_camping_country: FieldCamping;
   field_camping_image: FieldCampingImage;
   field_camping_location: FieldCamping;
   field_camping_owner: FieldCampingOwner;
-  field_camping_tags: FieldCampingTag[];
-  relationshipNames: CampingRelationshipName[];
+  field_camping_tags: FieldCamping[];
+  relationshipNames: string[];
 }
 
 export interface FieldCamping {
-  type: ParentType;
+  type: string;
   id: string;
   drupal_internal__tid: number;
   drupal_internal__revision_id: number;
   langcode: Langcode;
   revision_created: Date;
+  revision_log_message: null;
   status: boolean;
   name: string;
   description: null;
@@ -33,7 +36,7 @@ export interface FieldCamping {
   vid: Vid;
   revision_user: null;
   parent: Parent[];
-  relationshipNames: FieldCampingCountryRelationshipName[];
+  relationshipNames: RelationshipName[];
 }
 
 export enum Langcode {
@@ -49,13 +52,9 @@ export interface Self {
 }
 
 export interface Parent {
-  type: ParentType;
-  id: ID;
+  type: string;
+  id: string;
   resourceIdObjMeta: ParentResourceIDObjMeta;
-}
-
-export enum ID {
-  Virtual = "virtual",
 }
 
 export interface ParentResourceIDObjMeta {
@@ -72,18 +71,7 @@ export interface Help {
 }
 
 export interface Meta {
-  about: About;
-}
-
-export enum About {
-  UsageAndMeaningOfTheMissingResourceIdentifier = "Usage and meaning of the 'missing' resource identifier.",
-  UsageAndMeaningOfTheVirtualResourceIdentifier = "Usage and meaning of the 'virtual' resource identifier.",
-}
-
-export enum ParentType {
-  TaxonomyTermCategoriesCamping = "taxonomy_term--categories_camping",
-  TaxonomyTermCitiesBelgium = "taxonomy_term--cities_belgium",
-  TaxonomyTermCountries = "taxonomy_term--countries",
+  about: string;
 }
 
 export interface Path {
@@ -92,7 +80,7 @@ export interface Path {
   langcode: Langcode;
 }
 
-export enum FieldCampingCountryRelationshipName {
+export enum RelationshipName {
   Parent = "parent",
   RevisionUser = "revision_user",
   Vid = "vid",
@@ -103,35 +91,28 @@ export interface FieldCampingCountryResourceIDObjMeta {
 }
 
 export interface Vid {
-  type: VidType;
+  type: Type;
   id: string;
   resourceIdObjMeta: VidResourceIDObjMeta;
 }
 
 export interface VidResourceIDObjMeta {
-  drupal_internal__target_id: DrupalInternalTargetID;
+  drupal_internal__target_id: string;
 }
 
-export enum DrupalInternalTargetID {
-  CategoriesCamping = "categories_camping",
-  CitiesBelgium = "cities_belgium",
-  Countries = "countries",
-  Owner = "owner",
-}
-
-export enum VidType {
+export enum Type {
   NodeTypeNodeType = "node_type--node_type",
   TaxonomyVocabularyTaxonomyVocabulary = "taxonomy_vocabulary--taxonomy_vocabulary",
 }
 
 export interface FieldCampingImage {
-  type: FieldCampingImageType;
+  type: string;
   id: string;
   drupal_internal__fid: number;
   langcode: Langcode;
   filename: string;
   uri: URI;
-  filemime: Filemime;
+  filemime: string;
   filesize: number;
   status: boolean;
   created: Date;
@@ -139,43 +120,21 @@ export interface FieldCampingImage {
   links: FieldCampingCountryLinks;
   resourceIdObjMeta: FieldCampingImageResourceIDObjMeta;
   uid: Uid;
-  relationshipNames: FieldCampingImageRelationshipName[];
-}
-
-export enum Filemime {
-  ImageJPEG = "image/jpeg",
-}
-
-export enum FieldCampingImageRelationshipName {
-  NodeType = "node_type",
-  RevisionUid = "revision_uid",
-  Uid = "uid",
+  relationshipNames: string[];
 }
 
 export interface FieldCampingImageResourceIDObjMeta {
-  alt: Alt;
+  alt: string;
   title: string;
   width: number;
   height: number;
   drupal_internal__target_id: number;
 }
 
-export enum Alt {
-  Test = "test",
-}
-
-export enum FieldCampingImageType {
-  FileFile = "file--file",
-}
-
 export interface Uid {
-  type: UidType;
+  type: string;
   id: string;
   resourceIdObjMeta: FieldCampingCountryResourceIDObjMeta;
-}
-
-export enum UidType {
-  UserUser = "user--user",
 }
 
 export interface URI {
@@ -183,13 +142,27 @@ export interface URI {
   url: string;
 }
 
+export interface FieldCampingMap {
+  value: string;
+  geo_type: string;
+  lat: number;
+  lon: number;
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+  geohash: string;
+  latlon: string;
+}
+
 export interface FieldCampingOwner {
-  type: FieldCampingOwnerType;
+  type: string;
   id: string;
   drupal_internal__nid: number;
   drupal_internal__vid: number;
   langcode: Langcode;
   revision_timestamp: Date;
+  revision_log: null;
   status: boolean;
   title: string;
   created: Date;
@@ -200,74 +173,24 @@ export interface FieldCampingOwner {
   revision_translation_affected: boolean;
   path: Path;
   field_owner_email: string;
-  field_owner_phone: FieldOwnerPhone;
+  field_owner_phone: string;
   links: FieldCampingCountryLinks;
   resourceIdObjMeta: FieldCampingCountryResourceIDObjMeta;
   node_type: Vid;
   revision_uid: Uid;
   uid: Uid;
-  relationshipNames: FieldCampingImageRelationshipName[];
-}
-
-export enum FieldOwnerPhone {
-  The041111111111 = "0411 111 111 11",
-  The0472385691 = "0472 38 56 91",
-  The0496218730 = "0496 21 87 30",
-}
-
-export enum FieldCampingOwnerType {
-  NodeOwner = "node--owner",
-}
-
-export interface FieldCampingTag {
-  type: ParentType;
-  id: string;
-  drupal_internal__tid?: number;
-  drupal_internal__revision_id?: number;
-  langcode?: Langcode;
-  revision_created?: Date;
-  status?: boolean;
-  name?: string;
-  description?: null;
-  weight?: number;
-  changed?: Date;
-  default_langcode?: boolean;
-  revision_translation_affected?: boolean;
-  path?: Path;
-  links?: FieldCampingCountryLinks;
-  resourceIdObjMeta: FieldCampingTagResourceIDObjMeta;
-  vid?: Vid;
-  revision_user?: null;
-  parent?: Parent[];
-  relationshipNames?: FieldCampingCountryRelationshipName[];
-}
-
-export interface FieldCampingTagResourceIDObjMeta {
-  drupal_internal__target_id?: number;
-  links?: ResourceIDObjMetaLinks;
-}
-
-export enum CampingRelationshipName {
-  FieldCampingCountry = "field_camping_country",
-  FieldCampingImage = "field_camping_image",
-  FieldCampingLocation = "field_camping_location",
-  FieldCampingOwner = "field_camping_owner",
-  FieldCampingTags = "field_camping_tags",
-}
-
-export enum CampingType {
-  NodeCamping = "node--camping",
+  relationshipNames: string[];
 }
 
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-  public static toCamping(json: string): Camping[] {
-    return cast(JSON.parse(json), a(r("Camping")));
+  public static toCamping(json: string): Camping {
+    return cast(JSON.parse(json), r("Camping"));
   }
 
-  public static campingToJson(value: Camping[]): string {
-    return JSON.stringify(uncast(value, a(r("Camping"))), null, 2);
+  public static campingToJson(value: Camping): string {
+    return JSON.stringify(uncast(value, r("Camping")), null, 2);
   }
 }
 
@@ -440,29 +363,32 @@ function r(name: string) {
 const typeMap: any = {
   Camping: o(
     [
-      { json: "type", js: "type", typ: r("CampingType") },
+      { json: "type", js: "type", typ: "" },
       { json: "id", js: "id", typ: "" },
       { json: "title", js: "title", typ: "" },
       { json: "field_camping_description", js: "field_camping_description", typ: "" },
+      { json: "field_camping_map", js: "field_camping_map", typ: r("FieldCampingMap") },
       { json: "field_camping_price", js: "field_camping_price", typ: "" },
+      { json: "field_checkin_checkout", js: "field_checkin_checkout", typ: "" },
       { json: "links", js: "links", typ: r("FieldCampingCountryLinks") },
       { json: "field_camping_country", js: "field_camping_country", typ: r("FieldCamping") },
       { json: "field_camping_image", js: "field_camping_image", typ: r("FieldCampingImage") },
       { json: "field_camping_location", js: "field_camping_location", typ: r("FieldCamping") },
       { json: "field_camping_owner", js: "field_camping_owner", typ: r("FieldCampingOwner") },
-      { json: "field_camping_tags", js: "field_camping_tags", typ: a(r("FieldCampingTag")) },
-      { json: "relationshipNames", js: "relationshipNames", typ: a(r("CampingRelationshipName")) },
+      { json: "field_camping_tags", js: "field_camping_tags", typ: a(r("FieldCamping")) },
+      { json: "relationshipNames", js: "relationshipNames", typ: a("") },
     ],
     false
   ),
   FieldCamping: o(
     [
-      { json: "type", js: "type", typ: r("ParentType") },
+      { json: "type", js: "type", typ: "" },
       { json: "id", js: "id", typ: "" },
       { json: "drupal_internal__tid", js: "drupal_internal__tid", typ: 0 },
       { json: "drupal_internal__revision_id", js: "drupal_internal__revision_id", typ: 0 },
       { json: "langcode", js: "langcode", typ: r("Langcode") },
       { json: "revision_created", js: "revision_created", typ: Date },
+      { json: "revision_log_message", js: "revision_log_message", typ: null },
       { json: "status", js: "status", typ: true },
       { json: "name", js: "name", typ: "" },
       { json: "description", js: "description", typ: null },
@@ -476,7 +402,7 @@ const typeMap: any = {
       { json: "vid", js: "vid", typ: r("Vid") },
       { json: "revision_user", js: "revision_user", typ: null },
       { json: "parent", js: "parent", typ: a(r("Parent")) },
-      { json: "relationshipNames", js: "relationshipNames", typ: a(r("FieldCampingCountryRelationshipName")) },
+      { json: "relationshipNames", js: "relationshipNames", typ: a(r("RelationshipName")) },
     ],
     false
   ),
@@ -484,8 +410,8 @@ const typeMap: any = {
   Self: o([{ json: "href", js: "href", typ: "" }], false),
   Parent: o(
     [
-      { json: "type", js: "type", typ: r("ParentType") },
-      { json: "id", js: "id", typ: r("ID") },
+      { json: "type", js: "type", typ: "" },
+      { json: "id", js: "id", typ: "" },
       { json: "resourceIdObjMeta", js: "resourceIdObjMeta", typ: r("ParentResourceIDObjMeta") },
     ],
     false
@@ -499,7 +425,7 @@ const typeMap: any = {
     ],
     false
   ),
-  Meta: o([{ json: "about", js: "about", typ: r("About") }], false),
+  Meta: o([{ json: "about", js: "about", typ: "" }], false),
   Path: o(
     [
       { json: "alias", js: "alias", typ: null },
@@ -511,22 +437,22 @@ const typeMap: any = {
   FieldCampingCountryResourceIDObjMeta: o([{ json: "drupal_internal__target_id", js: "drupal_internal__target_id", typ: 0 }], false),
   Vid: o(
     [
-      { json: "type", js: "type", typ: r("VidType") },
+      { json: "type", js: "type", typ: r("Type") },
       { json: "id", js: "id", typ: "" },
       { json: "resourceIdObjMeta", js: "resourceIdObjMeta", typ: r("VidResourceIDObjMeta") },
     ],
     false
   ),
-  VidResourceIDObjMeta: o([{ json: "drupal_internal__target_id", js: "drupal_internal__target_id", typ: r("DrupalInternalTargetID") }], false),
+  VidResourceIDObjMeta: o([{ json: "drupal_internal__target_id", js: "drupal_internal__target_id", typ: "" }], false),
   FieldCampingImage: o(
     [
-      { json: "type", js: "type", typ: r("FieldCampingImageType") },
+      { json: "type", js: "type", typ: "" },
       { json: "id", js: "id", typ: "" },
       { json: "drupal_internal__fid", js: "drupal_internal__fid", typ: 0 },
       { json: "langcode", js: "langcode", typ: r("Langcode") },
       { json: "filename", js: "filename", typ: "" },
       { json: "uri", js: "uri", typ: r("URI") },
-      { json: "filemime", js: "filemime", typ: r("Filemime") },
+      { json: "filemime", js: "filemime", typ: "" },
       { json: "filesize", js: "filesize", typ: 0 },
       { json: "status", js: "status", typ: true },
       { json: "created", js: "created", typ: Date },
@@ -534,13 +460,13 @@ const typeMap: any = {
       { json: "links", js: "links", typ: r("FieldCampingCountryLinks") },
       { json: "resourceIdObjMeta", js: "resourceIdObjMeta", typ: r("FieldCampingImageResourceIDObjMeta") },
       { json: "uid", js: "uid", typ: r("Uid") },
-      { json: "relationshipNames", js: "relationshipNames", typ: a(r("FieldCampingImageRelationshipName")) },
+      { json: "relationshipNames", js: "relationshipNames", typ: a("") },
     ],
     false
   ),
   FieldCampingImageResourceIDObjMeta: o(
     [
-      { json: "alt", js: "alt", typ: r("Alt") },
+      { json: "alt", js: "alt", typ: "" },
       { json: "title", js: "title", typ: "" },
       { json: "width", js: "width", typ: 0 },
       { json: "height", js: "height", typ: 0 },
@@ -550,7 +476,7 @@ const typeMap: any = {
   ),
   Uid: o(
     [
-      { json: "type", js: "type", typ: r("UidType") },
+      { json: "type", js: "type", typ: "" },
       { json: "id", js: "id", typ: "" },
       { json: "resourceIdObjMeta", js: "resourceIdObjMeta", typ: r("FieldCampingCountryResourceIDObjMeta") },
     ],
@@ -563,14 +489,30 @@ const typeMap: any = {
     ],
     false
   ),
+  FieldCampingMap: o(
+    [
+      { json: "value", js: "value", typ: "" },
+      { json: "geo_type", js: "geo_type", typ: "" },
+      { json: "lat", js: "lat", typ: 3.14 },
+      { json: "lon", js: "lon", typ: 3.14 },
+      { json: "left", js: "left", typ: 3.14 },
+      { json: "top", js: "top", typ: 3.14 },
+      { json: "right", js: "right", typ: 3.14 },
+      { json: "bottom", js: "bottom", typ: 3.14 },
+      { json: "geohash", js: "geohash", typ: "" },
+      { json: "latlon", js: "latlon", typ: "" },
+    ],
+    false
+  ),
   FieldCampingOwner: o(
     [
-      { json: "type", js: "type", typ: r("FieldCampingOwnerType") },
+      { json: "type", js: "type", typ: "" },
       { json: "id", js: "id", typ: "" },
       { json: "drupal_internal__nid", js: "drupal_internal__nid", typ: 0 },
       { json: "drupal_internal__vid", js: "drupal_internal__vid", typ: 0 },
       { json: "langcode", js: "langcode", typ: r("Langcode") },
       { json: "revision_timestamp", js: "revision_timestamp", typ: Date },
+      { json: "revision_log", js: "revision_log", typ: null },
       { json: "status", js: "status", typ: true },
       { json: "title", js: "title", typ: "" },
       { json: "created", js: "created", typ: Date },
@@ -581,62 +523,17 @@ const typeMap: any = {
       { json: "revision_translation_affected", js: "revision_translation_affected", typ: true },
       { json: "path", js: "path", typ: r("Path") },
       { json: "field_owner_email", js: "field_owner_email", typ: "" },
-      { json: "field_owner_phone", js: "field_owner_phone", typ: r("FieldOwnerPhone") },
+      { json: "field_owner_phone", js: "field_owner_phone", typ: "" },
       { json: "links", js: "links", typ: r("FieldCampingCountryLinks") },
       { json: "resourceIdObjMeta", js: "resourceIdObjMeta", typ: r("FieldCampingCountryResourceIDObjMeta") },
       { json: "node_type", js: "node_type", typ: r("Vid") },
       { json: "revision_uid", js: "revision_uid", typ: r("Uid") },
       { json: "uid", js: "uid", typ: r("Uid") },
-      { json: "relationshipNames", js: "relationshipNames", typ: a(r("FieldCampingImageRelationshipName")) },
-    ],
-    false
-  ),
-  FieldCampingTag: o(
-    [
-      { json: "type", js: "type", typ: r("ParentType") },
-      { json: "id", js: "id", typ: "" },
-      { json: "drupal_internal__tid", js: "drupal_internal__tid", typ: u(undefined, 0) },
-      { json: "drupal_internal__revision_id", js: "drupal_internal__revision_id", typ: u(undefined, 0) },
-      { json: "langcode", js: "langcode", typ: u(undefined, r("Langcode")) },
-      { json: "revision_created", js: "revision_created", typ: u(undefined, Date) },
-      { json: "status", js: "status", typ: u(undefined, true) },
-      { json: "name", js: "name", typ: u(undefined, "") },
-      { json: "description", js: "description", typ: u(undefined, null) },
-      { json: "weight", js: "weight", typ: u(undefined, 0) },
-      { json: "changed", js: "changed", typ: u(undefined, Date) },
-      { json: "default_langcode", js: "default_langcode", typ: u(undefined, true) },
-      { json: "revision_translation_affected", js: "revision_translation_affected", typ: u(undefined, true) },
-      { json: "path", js: "path", typ: u(undefined, r("Path")) },
-      { json: "links", js: "links", typ: u(undefined, r("FieldCampingCountryLinks")) },
-      { json: "resourceIdObjMeta", js: "resourceIdObjMeta", typ: r("FieldCampingTagResourceIDObjMeta") },
-      { json: "vid", js: "vid", typ: u(undefined, r("Vid")) },
-      { json: "revision_user", js: "revision_user", typ: u(undefined, null) },
-      { json: "parent", js: "parent", typ: u(undefined, a(r("Parent"))) },
-      { json: "relationshipNames", js: "relationshipNames", typ: u(undefined, a(r("FieldCampingCountryRelationshipName"))) },
-    ],
-    false
-  ),
-  FieldCampingTagResourceIDObjMeta: o(
-    [
-      { json: "drupal_internal__target_id", js: "drupal_internal__target_id", typ: u(undefined, 0) },
-      { json: "links", js: "links", typ: u(undefined, r("ResourceIDObjMetaLinks")) },
+      { json: "relationshipNames", js: "relationshipNames", typ: a("") },
     ],
     false
   ),
   Langcode: ["en"],
-  ID: ["virtual"],
-  About: ["Usage and meaning of the 'missing' resource identifier.", "Usage and meaning of the 'virtual' resource identifier."],
-  ParentType: ["taxonomy_term--categories_camping", "taxonomy_term--cities_belgium", "taxonomy_term--countries"],
-  FieldCampingCountryRelationshipName: ["parent", "revision_user", "vid"],
-  DrupalInternalTargetID: ["categories_camping", "cities_belgium", "countries", "owner"],
-  VidType: ["node_type--node_type", "taxonomy_vocabulary--taxonomy_vocabulary"],
-  Filemime: ["image/jpeg"],
-  FieldCampingImageRelationshipName: ["node_type", "revision_uid", "uid"],
-  Alt: ["test"],
-  FieldCampingImageType: ["file--file"],
-  UidType: ["user--user"],
-  FieldOwnerPhone: ["0411 111 111 11", "0472 38 56 91", "0496 21 87 30"],
-  FieldCampingOwnerType: ["node--owner"],
-  CampingRelationshipName: ["field_camping_country", "field_camping_image", "field_camping_location", "field_camping_owner", "field_camping_tags"],
-  CampingType: ["node--camping"],
+  RelationshipName: ["parent", "revision_user", "vid"],
+  Type: ["node_type--node_type", "taxonomy_vocabulary--taxonomy_vocabulary"],
 };

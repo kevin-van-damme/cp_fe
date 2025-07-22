@@ -13,7 +13,7 @@ const page = async () => {
           {campingsData.length > 0 ? (
             campingsData.map((camping: Camping) => (
               <li key={camping.id}>
-                <Link href="">
+                <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}campings/${camping.id}`}>
                   <div className="flex flex-col w-full h-full bg-[#1a2b3c] rounded-2xl shadow-xl overflow-hidden text-white">
                     <div className="relative w-full aspect-[4/3]">
                       <Image

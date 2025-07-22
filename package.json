@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/leaflet": "^1.9.20",
     "drupal-jsonapi-params": "^3.0.0",
+    "leaflet": "^1.9.4",
     "next": "15.3.5",
     "next-drupal": "^2.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0",
+    "save-dev": "^0.0.1-security"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
