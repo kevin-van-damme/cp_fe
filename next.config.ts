@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*", // Allow images from all domains
+        hostname: "*",
       },
     ],
   },

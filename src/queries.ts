@@ -29,7 +29,6 @@ export const getAllCampings = async () => {
   }
 };
 export const getCampingById = async ({ id }: { id: string }) => {
-  // const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string);
   const params = new DrupalJsonApiParams()
     .addFields("node--camping", [
       "id",
