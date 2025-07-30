@@ -27,11 +27,32 @@ const page = async ({ params: { id } }: { params: { id: string } }) => {
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-2 text-gray-700">Description</h2>
         <div
-          className="text-gray-700 leading-relaxed "
+          className="text-gray-700 leading-relaxed"
           dangerouslySetInnerHTML={{
             __html: campingDetailData.field_camping_description || "No description available.",
           }}
         />
+      </div>
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold mb-2 text-gray-700">Tags</h2>
+        <ul className="flex flex-wrap gap-2">
+          {campingDetailData.field_camping_tags && campingDetailData.field_camping_tags.length > 0 ? (
+            campingDetailData.field_camping_tags.map((tag) => (
+              <li key={tag.id}>
+                <a
+                  href={`${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${tag.links.self.href}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-800"
+                >
+                  {tag.name}
+                </a>
+              </li>
+            ))
+          ) : (
+            <li>No tags available.</li>
+          )}
+        </ul>
       </div>
       <div className="my-6 p-4 bg-blue-50 rounded-lg">
         <h3 className="text-lg font-semibold text-blue-800 mb-1">Owner</h3>
@@ -53,7 +74,7 @@ const page = async ({ params: { id } }: { params: { id: string } }) => {
       <div className="mb-6">
         <h2 className="text-2xl font-semibold mb-2 text-gray-700">Camping Rules</h2>
         <div
-          className="text-gray-700 leading-relaxed "
+          className="text-gray-700 leading-relaxed"
           dangerouslySetInnerHTML={{
             __html: "No rules specified.",
           }}
