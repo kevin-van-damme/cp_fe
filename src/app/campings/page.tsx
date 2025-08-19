@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Camping } from "@/typesCamping";
 import AllCampingsMap from "@/components/maps/AllCampingsMap";
+import MinMaxSlider from "@/components/minmaxslider/MinMaxSlider";
 
 const page = async () => {
   const campingsData: Camping[] = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/campings`, {
@@ -46,6 +47,14 @@ const page = async () => {
                 placeholder="Enter a location"
                 className="w-100 border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-white"
               />
+            </div>
+            <div>
+              <label htmlFor="price" className="block mb-1 font-medium text-white">
+                Price
+              </label>
+              <div>
+                <MinMaxSlider />
+              </div>
             </div>
           </div>
           <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg hover:cursor-pointer mt-4">Search </button>
