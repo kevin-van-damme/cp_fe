@@ -5,7 +5,7 @@ import "rc-slider/assets/index.css";
 import type { SliderProps } from "rc-slider";
 
 const MinMaxSlider: React.FC = () => {
-  const [values, setValues] = useState<[number, number]>([0, 100]);
+  const [values, setValues] = useState<[number, number]>([14, 44]);
   const handleSliderChange: SliderProps["onChange"] = (newValues) => {
     if (Array.isArray(newValues)) {
       setValues(newValues as [number, number]);
@@ -14,7 +14,7 @@ const MinMaxSlider: React.FC = () => {
   const handleMinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value === "") {
-      setValues([0, values[1]]);
+      setValues([14, values[1]]);
       return;
     }
     const numValue = parseInt(value, 10);
@@ -25,7 +25,7 @@ const MinMaxSlider: React.FC = () => {
   const handleMaxInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value === "") {
-      setValues([values[0], 100]);
+      setValues([values[0], 44]);
       return;
     }
     const numValue = parseInt(value, 10);
@@ -35,7 +35,7 @@ const MinMaxSlider: React.FC = () => {
   };
   return (
     <div className="w-50 flex flex-col gap-2">
-      <Slider range step={1} min={0} max={100} value={values} onChange={handleSliderChange} />
+      <Slider range step={1} min={14} max={44} value={values} onChange={handleSliderChange} />
       <div className="gap-2 flex">
         <input
           type="text"

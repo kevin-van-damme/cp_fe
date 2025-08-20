@@ -8,7 +8,6 @@ const page = async () => {
   const campingsData: Camping[] = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/campings`, {
     next: { revalidate: 60 },
   }).then((res) => res.json());
-
   return (
     <div className="max-w-7xl mx-auto">
       <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center mb-4 lg:mb-10 md:mb-10">
